@@ -14,6 +14,25 @@
 </head>
 <body>
 
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-text">
+        <span class="preloader-char">S</span>
+        <span class="preloader-char">H</span>
+        <span class="preloader-char">R</span>
+        <span class="preloader-char">E</span>
+        <span class="preloader-char">Y</span>
+        <span class="preloader-char">A</span>
+        <span class="preloader-char">S</span>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+      <div class="preloader-counter">0</div>
+    </div>
+  </div>
+
   <!-- Custom Cursor -->
   <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
@@ -60,7 +79,7 @@
          HERO SECTION
          ==================================================== -->
     <section class="hero" id="home" aria-label="Hero section">
-      <div class="crt-overlay" aria-hidden="true"></div>
+      <div class="crt-overlay" aria-hidden="true" data-parallax="0.3"></div>
 
       <div class="hero-content">
         <span class="hero-greeting" aria-label="Greeting">Hello, World!</span>
@@ -226,6 +245,24 @@
       </div>
     </div>
 
+    <!-- ====================================================
+         PINNED QUOTE SECTION
+         ==================================================== -->
+    <section class="pinned-quote-section" aria-label="Philosophy quote">
+      <div class="container">
+        <p class="pinned-quote">
+          <span class="quote-word">I</span>
+          <span class="quote-word">believe</span>
+          <span class="quote-word">great</span>
+          <span class="quote-word">software</span>
+          <span class="quote-word">is</span>
+          <span class="quote-word">indistinguishable</span>
+          <span class="quote-word">from</span>
+          <span class="quote-word accent-text">magic.</span>
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <!-- ====================================================
@@ -258,11 +295,17 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="footer-year"></span> Shreyas. All rights reserved.</p>
-        <a href="#top" class="back-to-top" aria-label="Back to top">↑ Back to top</a>
+        <a href="#top" class="back-to-top" data-scroll-top aria-label="Back to top">↑ Back to top</a>
       </div>
     </div>
   </footer>
 
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- GSAP Core + Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/pages/home.js"></script>
 </body>

@@ -2,6 +2,8 @@
    PROJECTS PAGE JS - js/pages/projects.js
    ============================================================ */
 
+const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ============================================================
    CATEGORY FILTER
    ============================================================ */
@@ -24,9 +26,7 @@
           card.classList.remove('hidden');
           card.style.animationDelay = (visibleIndex * 0.08) + 's';
           card.style.animation = 'none';
-          requestAnimationFrame(() => {
-            card.style.animation = '';
-          });
+          requestAnimationFrame(() => { card.style.animation = ''; });
           visibleIndex++;
         } else {
           card.classList.add('hidden');
@@ -37,24 +37,44 @@
 })();
 
 /* ============================================================
-   STAGGERED ENTRANCE ANIMATIONS
+   STAGGERED ENTRANCE ANIMATIONS — GSAP or IntersectionObserver
    ============================================================ */
 (function initCardEntrance() {
   const cards = document.querySelectorAll('.project-card');
-  cards.forEach((card, i) => {
-    card.style.animationDelay = (i * 0.08) + 's';
-  });
+  if (!cards.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        observer.unobserve(entry.target);
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !_prefersReducedMotion) {
+    const grid = document.querySelector('.projects-grid');
+    gsap.fromTo(cards,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: grid || cards[0],
+          start: 'top 80%',
+        }
       }
+    );
+  } else {
+    cards.forEach((card, i) => {
+      card.style.animationDelay = (i * 0.08) + 's';
     });
-  }, { threshold: 0.1 });
 
-  cards.forEach(card => observer.observe(card));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  }
 })();
 
 /* ============================================================
@@ -73,7 +93,7 @@
   function openModal(data) {
     if (modalTitle) modalTitle.textContent = data.title || '';
     if (modalDesc)  modalDesc.innerHTML   = data.desc  || '';
-    if (modalTags)  {
+    if (modalTags) {
       modalTags.innerHTML = (data.tags || [])
         .map(t => `<span class="tag">${t}</span>`).join('');
     }
@@ -81,24 +101,17 @@
       modalLinks.innerHTML = '';
       if (data.github) {
         const a = document.createElement('a');
-        a.href = data.github;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.className = 'btn btn--ghost btn--sm';
-        a.textContent = 'GitHub →';
+        a.href = data.github; a.target = '_blank'; a.rel = 'noopener';
+        a.className = 'btn btn--ghost btn--sm'; a.textContent = 'GitHub →';
         modalLinks.appendChild(a);
       }
       if (data.live) {
         const a = document.createElement('a');
-        a.href = data.live;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.className = 'btn btn--primary btn--sm';
-        a.textContent = 'Live Demo →';
+        a.href = data.live; a.target = '_blank'; a.rel = 'noopener';
+        a.className = 'btn btn--primary btn--sm'; a.textContent = 'Live Demo →';
         modalLinks.appendChild(a);
       }
     }
-
     overlay.classList.add('open');
     document.body.classList.add('no-scroll');
   }
@@ -108,13 +121,11 @@
     document.body.classList.remove('no-scroll');
   }
 
-  // Open modal from "Details" buttons
   document.querySelectorAll('[data-modal-open]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const card = btn.closest('[data-project]');
       if (!card) return;
-
       openModal({
         title:  card.dataset.title  || card.querySelector('h3')?.textContent,
         desc:   card.dataset.desc   || card.querySelector('p')?.innerHTML,
@@ -125,15 +136,8 @@
     });
   });
 
-  // Close button
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-  // Click outside modal content
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-
-  // Escape key
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
   });

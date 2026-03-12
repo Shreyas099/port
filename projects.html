@@ -14,6 +14,25 @@
 </head>
 <body>
 
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-text">
+        <span class="preloader-char">S</span>
+        <span class="preloader-char">H</span>
+        <span class="preloader-char">R</span>
+        <span class="preloader-char">E</span>
+        <span class="preloader-char">Y</span>
+        <span class="preloader-char">A</span>
+        <span class="preloader-char">S</span>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+      <div class="preloader-counter">0</div>
+    </div>
+  </div>
+
   <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
   <div class="page-transition" id="page-transition" aria-hidden="true"></div>
@@ -438,11 +457,17 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="footer-year"></span> Shreyas. All rights reserved.</p>
-        <a href="#top" class="back-to-top" aria-label="Back to top">↑ Back to top</a>
+        <a href="#top" class="back-to-top" data-scroll-top aria-label="Back to top">↑ Back to top</a>
       </div>
     </div>
   </footer>
 
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- GSAP Core + Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/pages/projects.js"></script>
 </body>
