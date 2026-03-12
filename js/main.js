@@ -674,6 +674,19 @@ function initPreloader() {
   const barFill = preloader.querySelector('.preloader-bar-fill');
   const counter = preloader.querySelector('.preloader-counter');
 
+  // Pre-create the page transition overlay so it's ready for the entry animation
+  let overlay = document.querySelector('.page-transition-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'page-transition-overlay';
+    for (let i = 0; i < 5; i++) {
+      const strip = document.createElement('div');
+      strip.className = 'transition-strip';
+      overlay.appendChild(strip);
+    }
+    document.body.appendChild(overlay);
+  }
+
   const tl = gsap.timeline();
 
   tl.to(chars, {

@@ -252,7 +252,8 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
 
   function getScrollAmount() {
     // Amount to scroll = total track width minus one viewport width
-    return track.scrollWidth - window.innerWidth;
+    // Use clientWidth to exclude potential scrollbar width
+    return track.scrollWidth - document.documentElement.clientWidth;
   }
 
   const tween = gsap.to(track, {

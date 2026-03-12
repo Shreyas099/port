@@ -137,13 +137,21 @@
     rafId = requestAnimationFrame(loop);
   }
 
-  /* ---- Mouse tracking ---- */
-  document.addEventListener('mousemove', (e) => {
+  /* ---- Mouse tracking — listen on parent hero since canvas has pointer-events:none ---- */
+  const hero = canvas.closest('section') || document.body;
+
+  hero.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
   }, { passive: true });
 
+  hero.addEventListener('mouseleave', () => {
+    mouseX = -9999;
+    mouseY = -9999;
+  });
+
+  /* Also reset when document mouse leaves the window */
   document.addEventListener('mouseleave', () => {
     mouseX = -9999;
     mouseY = -9999;

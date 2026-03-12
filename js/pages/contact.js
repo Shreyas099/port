@@ -146,15 +146,6 @@
       form.querySelectorAll('.form-group').forEach(g => g.classList.remove('success', 'error', 'focused', 'valid', 'invalid'));
 
       if (successMsg) {
-        // Inject success icon if not already present
-        if (!successMsg.querySelector('.success-icon')) {
-          const iconHTML = `<div class="success-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>`;
-          successMsg.insertAdjacentHTML('afterbegin', iconHTML);
-        }
         successMsg.classList.add('visible');
         setTimeout(() => successMsg.classList.remove('visible'), 5000);
       }
