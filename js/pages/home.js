@@ -172,3 +172,32 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
     }
   });
 })();
+
+/* ============================================================
+   HORIZONTAL SCROLL — LandoNorris-inspired showcase gallery
+   ============================================================ */
+(function initHorizontalScroll() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || _prefersReducedMotion) return;
+
+  const section = document.querySelector('.horizontal-scroll-section');
+  const track = document.querySelector('.horizontal-scroll-track');
+  if (!section || !track) return;
+
+  // On mobile, skip the pinned horizontal scroll
+  if (window.innerWidth <= 768) return;
+
+  const getScrollAmount = () => track.scrollWidth - section.clientWidth;
+
+  gsap.to(track, {
+    x: () => -getScrollAmount(),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: () => '+=' + getScrollAmount(),
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
+    }
+  });
+})();

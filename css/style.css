@@ -11,20 +11,21 @@
    ============================================================ */
 :root {
   /* Colors */
-  --bg-primary:       #050505;
-  --bg-secondary:     #0a0a0f;
-  --bg-card:          #12121a;
-  --bg-glass:         rgba(18, 18, 26, 0.7);
-  --text-primary:     #e0e0ff;
-  --text-secondary:   #7a7a9a;
-  --accent:           #00d4ff;
-  --accent-secondary: #7c3aed;
-  --accent-tertiary:  #00ff88;
-  --neon-pink:        #ff0080;
-  --gradient-1:       linear-gradient(135deg, #00d4ff, #7c3aed);
-  --gradient-2:       linear-gradient(135deg, #7c3aed, #ff0080);
+  --bg-primary:       #08070b;
+  --bg-secondary:     #0f0e14;
+  --bg-card:          #16141e;
+  --bg-glass:         rgba(22, 20, 30, 0.75);
+  --text-primary:     #f0ece4;
+  --text-secondary:   #8a8494;
+  --accent:           #ff6b00;
+  --accent-secondary: #a855f7;
+  --accent-tertiary:  #c4f542;
+  --neon-pink:        #ff2d55;
+  --gradient-1:       linear-gradient(135deg, #ff6b00, #a855f7);
+  --gradient-2:       linear-gradient(135deg, #a855f7, #ff2d55);
+  --gradient-3:       linear-gradient(135deg, #ff6b00, #c4f542);
   --border:           rgba(255, 255, 255, 0.06);
-  --border-glow:      rgba(0, 212, 255, 0.3);
+  --border-glow:      rgba(255, 107, 0, 0.3);
 
   /* Typography */
   --font-body:     'Inter', sans-serif;
@@ -55,9 +56,9 @@
   --transition-slow: 0.6s ease;
 
   /* Shadows */
-  --shadow-glow:   0 0 20px rgba(0, 212, 255, 0.15);
+  --shadow-glow:   0 0 20px rgba(255, 107, 0, 0.15);
   --shadow-card:   0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-purple: 0 0 20px rgba(124, 58, 237, 0.2);
+  --shadow-purple: 0 0 20px rgba(168, 85, 247, 0.2);
 }
 
 /* ============================================================
@@ -229,11 +230,11 @@ p {
 .btn--primary {
   background: var(--gradient-1);
   color: #fff;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
 }
 
 .btn--primary:hover {
-  box-shadow: 0 0 35px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 35px rgba(255, 107, 0, 0.5);
   transform: translateY(-2px);
 }
 
@@ -262,7 +263,7 @@ p {
 .btn--outline:hover {
   background: var(--accent);
   color: var(--bg-primary);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
   transform: translateY(-2px);
 }
 
@@ -286,13 +287,13 @@ p {
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
-  box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(255, 107, 0, 0.3);
 }
 
 .cursor-ring {
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(0, 212, 255, 0.5);
+  border: 1.5px solid rgba(255, 107, 0, 0.5);
   border-radius: 50%;
   position: fixed;
   top: 0;
@@ -304,7 +305,7 @@ p {
 }
 
 .cursor-dot.hover  { width: 12px; height: 12px; background: var(--neon-pink); }
-.cursor-ring.hover { width: 52px; height: 52px; border-color: rgba(255, 0, 128, 0.4); }
+.cursor-ring.hover { width: 52px; height: 52px; border-color: rgba(255, 45, 85, 0.4); }
 
 /* ============================================================
    PAGE TRANSITION OVERLAY
@@ -658,8 +659,8 @@ p {
 .tag {
   display: inline-block;
   padding: 0.2rem 0.7rem;
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.2);
   border-radius: 20px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -668,14 +669,14 @@ p {
 }
 
 .tag--purple {
-  background: rgba(124, 58, 237, 0.1);
-  border-color: rgba(124, 58, 237, 0.2);
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.2);
   color: var(--accent-secondary);
 }
 
 .tag--green {
-  background: rgba(0, 255, 136, 0.1);
-  border-color: rgba(0, 255, 136, 0.2);
+  background: rgba(196, 245, 66, 0.1);
+  border-color: rgba(196, 245, 66, 0.2);
   color: var(--accent-tertiary);
 }
 
@@ -697,8 +698,8 @@ p {
   display: flex;
   align-items: center;
   padding-top: var(--navbar-height);
-  background: radial-gradient(ellipse at top center, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at bottom left, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+  background: radial-gradient(ellipse at top center, rgba(168, 85, 247, 0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at bottom left, rgba(255, 107, 0, 0.08) 0%, transparent 50%);
   position: relative;
   overflow: hidden;
 }
@@ -864,7 +865,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #050505;
+  background: #08070b;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -897,8 +898,25 @@ p {
 .preloader-bar-fill {
   width: 0%;
   height: 100%;
-  background: var(--accent);
+  background: var(--gradient-1);
   border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: preloaderSweep 1.5s infinite;
+}
+
+@keyframes preloaderSweep {
+  to { left: 100%; }
 }
 .preloader-counter {
   font-family: var(--font-mono);
@@ -907,24 +925,27 @@ p {
 }
 
 /* ============================================================
-   PAGE TRANSITION OVERLAY (GSAP-powered)
+   PAGE TRANSITION OVERLAY (GSAP-powered multi-strip wipe)
    ============================================================ */
 .page-transition-overlay {
   position: fixed;
   inset: 0;
   z-index: 99998;
-  background: #050505;
+  display: flex;
   pointer-events: none;
-  transform: translateY(-100%);
 }
+
 .transition-strip {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--gradient-1);
+  flex: 1;
+  transform: scaleY(0);
+  transform-origin: top;
 }
+
+.transition-strip:nth-child(1) { background: #08070b; }
+.transition-strip:nth-child(2) { background: #0f0e14; }
+.transition-strip:nth-child(3) { background: #16141e; }
+.transition-strip:nth-child(4) { background: #0f0e14; }
+.transition-strip:nth-child(5) { background: #08070b; }
 
 /* ============================================================
    PINNED QUOTE SECTION
@@ -967,4 +988,84 @@ p {
   opacity: 1;
   transform: none;
   transition: none;
+}
+
+/* ============================================================
+   AMBIENT PARTICLES CANVAS
+   ============================================================ */
+.ambient-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1001;
+  background: transparent;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gradient-1);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   SPLIT REVEAL ANIMATIONS
+   ============================================================ */
+.split-reveal-left,
+.split-reveal-right {
+  opacity: 0;
+}
+
+.split-reveal-left.active  { animation: splitRevealLeft  1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards; }
+.split-reveal-right.active { animation: splitRevealRight 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards; }
+
+@keyframes splitRevealLeft {
+  from { opacity: 0; transform: translateX(-80px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes splitRevealRight {
+  from { opacity: 0; transform: translateX(80px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================================
+   SCALE REVEAL ANIMATION
+   ============================================================ */
+.scale-reveal {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.scale-reveal.active {
+  animation: scaleReveal 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes scaleReveal {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* When GSAP active, let GSAP handle these too */
+.gsap-active .split-reveal-left,
+.gsap-active .split-reveal-right,
+.gsap-active .scale-reveal {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }

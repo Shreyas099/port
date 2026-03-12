@@ -151,7 +151,7 @@ function initGSAPCursor() {
 
     document.addEventListener('mouseout', (e) => {
       if (e.target.closest(interactiveSelector)) {
-        gsap.to(ring, { scale: 1, borderColor: 'rgba(0, 212, 255, 0.4)', duration: 0.3 });
+        gsap.to(ring, { scale: 1, borderColor: 'rgba(255, 107, 0, 0.4)', duration: 0.3 });
         gsap.to(dot,  { scale: 1, duration: 0.3 });
       }
     });
@@ -262,6 +262,38 @@ function initScrollAnimations() {
         }
       );
     });
+
+    // Split reveals
+    gsap.utils.toArray('.split-reveal-left').forEach(el => {
+      gsap.fromTo(el,
+        { x: -80, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.split-reveal-right').forEach(el => {
+      gsap.fromTo(el,
+        { x: 80, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Scale reveal
+    gsap.utils.toArray('.scale-reveal').forEach(el => {
+      gsap.fromTo(el,
+        { scale: 0.9, opacity: 0 },
+        {
+          scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
   } else {
     // Fallback IntersectionObserver
     const elements = document.querySelectorAll('.reveal');
@@ -300,21 +332,27 @@ function initParallax() {
 }
 
 /* ============================================================
-   PAGE TRANSITIONS — GSAP overlay
+   PAGE TRANSITIONS — multi-strip wipe (LandoNorris-inspired)
    ============================================================ */
 function initPageTransitions() {
-  // Create overlay
+  // Create multi-strip overlay
   let overlay = document.querySelector('.page-transition-overlay');
   if (!overlay) {
     overlay = document.createElement('div');
     overlay.className = 'page-transition-overlay';
-    overlay.innerHTML = '<div class="transition-strip"></div>';
+    for (let i = 0; i < 5; i++) {
+      const strip = document.createElement('div');
+      strip.className = 'transition-strip';
+      overlay.appendChild(strip);
+    }
     document.body.appendChild(overlay);
   }
 
+  const strips = overlay.querySelectorAll('.transition-strip');
+
   if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
-    // Start off-screen (preloader handles entrance)
-    gsap.set(overlay, { yPercent: -100 });
+    // Initial state: strips collapsed (hidden)
+    gsap.set(strips, { scaleY: 0, transformOrigin: 'top' });
 
     // Intercept internal links
     document.querySelectorAll('a[href]').forEach(link => {
@@ -324,17 +362,17 @@ function initPageTransitions() {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = href;
-        gsap.fromTo(overlay,
-          { yPercent: 100 },
-          {
-            yPercent: 0,
-            duration: 0.6,
-            ease: 'power3.inOut',
-            onComplete: () => {
-              window.location.href = target;
-            }
+        // Animate strips in
+        gsap.to(strips, {
+          scaleY: 1,
+          transformOrigin: 'top',
+          duration: 0.4,
+          stagger: 0.05,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            window.location.href = target;
           }
-        );
+        });
       });
     });
   } else {
@@ -354,6 +392,135 @@ function initPageTransitions() {
         fallback.classList.add('active');
         setTimeout(() => { window.location.href = href; }, 400);
       });
+    });
+  }
+}
+
+/* ============================================================
+   AMBIENT PARTICLES — subtle floating canvas particles
+   ============================================================ */
+function initAmbientParticles() {
+  if (prefersReducedMotion) return;
+  // Skip on primary pointer: coarse (phones/tablets without mouse) to save resources
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'ambient-particles';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const PARTICLE_COUNT = 40;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.3 + 0.1,
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 107, 0, ${p.opacity})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  createParticles();
+  animate();
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+}
+
+/* ============================================================
+   TEXT SCRAMBLE — decode effect on section labels
+   ============================================================ */
+function initTextScramble() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) return;
+
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+
+  gsap.utils.toArray('.section-label').forEach(el => {
+    const originalText = el.textContent;
+    let hasPlayed = false;
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        if (hasPlayed) return;
+        hasPlayed = true;
+        let iteration = 0;
+        const maxIterations = originalText.length * 3;
+
+        // Temporarily hide from screen readers during scramble animation
+        el.setAttribute('aria-hidden', 'true');
+
+        const interval = setInterval(() => {
+          el.textContent = originalText
+            .split('')
+            .map((char, i) => {
+              if (char === ' ') return ' ';
+              if (i < iteration / 3) return originalText[i];
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+
+          iteration++;
+          if (iteration >= maxIterations) {
+            el.textContent = originalText;
+            el.removeAttribute('aria-hidden');
+            clearInterval(interval);
+          }
+        }, 30);
+      }
+    });
+  });
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+function initScrollProgress() {
+  const bar = document.querySelector('.scroll-progress-bar');
+  if (!bar) return;
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.to(bar, {
+      width: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3,
+      }
     });
   }
 }
@@ -385,6 +552,9 @@ function initPageEntranceAnimations() {
   initParallax();
   initPageTransitions();
   initScrollToTop();
+  initAmbientParticles();
+  initTextScramble();
+  initScrollProgress();
 }
 
 function initPreloader() {

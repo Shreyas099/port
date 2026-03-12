@@ -26,7 +26,7 @@
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-  background: conic-gradient(from var(--angle), #00d4ff, #7c3aed, #ff0080, #00ff88, #00d4ff);
+  background: conic-gradient(from var(--angle), #ff6b00, #a855f7, #ff2d55, #c4f542, #ff6b00);
   animation: rotate-border 4s linear infinite;
   z-index: 0;
 }
@@ -286,7 +286,7 @@
 }
 
 .flip-card-back {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(168, 85, 247, 0.1));
   border: 1px solid var(--border-glow);
   transform: rotateY(180deg);
 }
@@ -354,12 +354,12 @@
   border-radius: 2px;
   width: 0;
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 8px rgba(255, 107, 0, 0.4);
 }
 
 /* Resume CTA */
 .resume-cta {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(124, 58, 237, 0.06));
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.06), rgba(168, 85, 247, 0.06));
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: var(--space-3xl);

@@ -29,8 +29,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: rgba(0, 255, 136, 0.08);
-  border: 1px solid rgba(0, 255, 136, 0.2);
+  background: rgba(196, 245, 66, 0.08);
+  border: 1px solid rgba(196, 245, 66, 0.2);
   border-radius: 20px;
   padding: 0.4rem 1rem;
   font-family: var(--font-mono);
@@ -83,7 +83,7 @@
 .detail-icon {
   width: 40px;
   height: 40px;
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(255, 107, 0, 0.08);
   border: 1px solid var(--border-glow);
   border-radius: var(--radius-sm);
   display: flex;
@@ -230,7 +230,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
 }
 
 /* Float label on focus / when has value */
@@ -250,13 +250,13 @@
 .form-group.error input,
 .form-group.error textarea {
   border-color: var(--neon-pink);
-  box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
 }
 
 .form-group.success input,
 .form-group.success textarea {
   border-color: var(--accent-tertiary);
-  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.08);
+  box-shadow: 0 0 0 3px rgba(196, 245, 66, 0.08);
 }
 
 .field-error {
@@ -306,8 +306,8 @@
 .form-success-msg {
   display: none;
   padding: var(--space-lg);
-  background: rgba(0, 255, 136, 0.06);
-  border: 1px solid rgba(0, 255, 136, 0.2);
+  background: rgba(196, 245, 66, 0.06);
+  border: 1px solid rgba(196, 245, 66, 0.2);
   border-radius: var(--radius-md);
   text-align: center;
   margin-top: var(--space-lg);
@@ -341,15 +341,15 @@
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 212, 255, 0.04) 40px, rgba(0, 212, 255, 0.04) 41px),
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 212, 255, 0.04) 40px, rgba(0, 212, 255, 0.04) 41px);
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255, 107, 0, 0.04) 40px, rgba(255, 107, 0, 0.04) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 107, 0, 0.04) 40px, rgba(255, 107, 0, 0.04) 41px);
 }
 
 .map-placeholder::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 60% 50%, rgba(0, 212, 255, 0.06) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 60% 50%, rgba(255, 107, 0, 0.06) 0%, transparent 60%);
 }
 
 .map-pin {
@@ -364,7 +364,7 @@
 .map-pin-icon {
   width: 48px;
   height: 48px;
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(255, 107, 0, 0.1);
   border: 1px solid var(--border-glow);
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
@@ -426,7 +426,7 @@
   transition: background var(--transition-fast);
 }
 
-.faq-question:hover { background: rgba(0, 212, 255, 0.04); }
+.faq-question:hover { background: rgba(255, 107, 0, 0.04); }
 
 .faq-chevron {
   color: var(--accent);
@@ -458,7 +458,7 @@
    CTA SECTION
    ============================================================ */
 .cta-section {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(124, 58, 237, 0.06));
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.06), rgba(168, 85, 247, 0.06));
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   text-align: center;
