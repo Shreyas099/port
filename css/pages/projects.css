@@ -27,7 +27,7 @@
 
 .proj-filter-btn:hover,
 .proj-filter-btn.active {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(255, 107, 0, 0.1);
   border-color: var(--accent);
   color: var(--accent);
   box-shadow: var(--shadow-glow);
@@ -53,7 +53,7 @@
 }
 
 .featured-img {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(124, 58, 237, 0.1));
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.06), rgba(168, 85, 247, 0.1));
   min-height: 320px;
   display: flex;
   align-items: center;
@@ -70,8 +70,8 @@
     45deg,
     transparent,
     transparent 10px,
-    rgba(0, 212, 255, 0.02) 10px,
-    rgba(0, 212, 255, 0.02) 11px
+    rgba(255, 107, 0, 0.02) 10px,
+    rgba(255, 107, 0, 0.02) 11px
   );
 }
 
@@ -119,7 +119,7 @@
   background: var(--border);
 }
 
-.screen-line:nth-child(1) { width: 70%; background: rgba(0, 212, 255, 0.15); }
+.screen-line:nth-child(1) { width: 70%; background: rgba(255, 107, 0, 0.15); }
 .screen-line:nth-child(2) { width: 50%; }
 .screen-line:nth-child(3) { width: 90%; }
 .screen-line:nth-child(4) { width: 60%; }
@@ -209,7 +209,7 @@
 
 .project-card-img {
   height: 180px;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(124, 58, 237, 0.1));
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.06), rgba(168, 85, 247, 0.1));
   position: relative;
   overflow: hidden;
   display: flex;
@@ -377,7 +377,7 @@
 }
 
 .modal-close:hover {
-  background: rgba(255, 0, 128, 0.1);
+  background: rgba(255, 45, 85, 0.1);
   border-color: var(--neon-pink);
   color: var(--neon-pink);
 }
