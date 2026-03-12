@@ -401,19 +401,7 @@ function initPreloader() {
   const barFill = preloader.querySelector('.preloader-bar-fill');
   const counter = preloader.querySelector('.preloader-counter');
 
-  const tl = gsap.timeline({
-    onComplete: () => {
-      gsap.to(preloader, {
-        yPercent: -100,
-        duration: 0.8,
-        ease: 'power3.inOut',
-        onComplete: () => {
-          preloader.remove();
-          initPageEntranceAnimations();
-        }
-      });
-    }
-  });
+  const tl = gsap.timeline();
 
   tl.to(chars, {
     opacity: 1,
@@ -435,6 +423,17 @@ function initPreloader() {
     snap: { textContent: 1 },
     ease: 'power2.inOut'
   }, '<');
+
+  // Chain exit animation directly into timeline
+  tl.to(preloader, {
+    yPercent: -100,
+    duration: 0.8,
+    ease: 'power3.inOut',
+    onComplete: () => {
+      preloader.remove();
+      initPageEntranceAnimations();
+    }
+  });
 }
 
 /* ============================================================

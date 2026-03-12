@@ -116,31 +116,32 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
 (function initHeroAnimations() {
   if (typeof gsap === 'undefined' || _prefersReducedMotion) return;
 
-  const DELAY = 2.2; // Account for preloader duration
+  // Preloader total duration: chars(0.5) + bar(1.2, offset -0.3) + exit(0.8) ≈ 2.2s
+  const HERO_ANIM_DELAY = 2.2;
 
   gsap.fromTo('.hero-greeting',
     { y: 30, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: DELAY - 0.1 }
+    { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: HERO_ANIM_DELAY - 0.1 }
   );
 
   gsap.fromTo('.hero-title .glitch',
     { y: 80, opacity: 0, rotateX: -40 },
-    { y: 0, opacity: 1, rotateX: 0, duration: 0.8, ease: 'power3.out', delay: DELAY }
+    { y: 0, opacity: 1, rotateX: 0, duration: 0.8, ease: 'power3.out', delay: HERO_ANIM_DELAY }
   );
 
   gsap.fromTo('.hero-subtitle',
     { y: 30, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: DELAY + 0.3 }
+    { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: HERO_ANIM_DELAY + 0.3 }
   );
 
   gsap.fromTo('.hero-actions > *',
     { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out', delay: DELAY + 0.5 }
+    { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out', delay: HERO_ANIM_DELAY + 0.5 }
   );
 
   gsap.fromTo('.hero-stats .stat-item',
     { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: DELAY + 0.7 }
+    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: HERO_ANIM_DELAY + 0.7 }
   );
 })();
 
@@ -154,10 +155,12 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
   const words   = gsap.utils.toArray('.quote-word');
   if (!section || !words.length) return;
 
+  const PIXELS_PER_WORD = 120; // Scroll pixels per word reveal step
+
   ScrollTrigger.create({
     trigger: section,
     start: 'top top',
-    end: '+=' + (words.length * 120),
+    end: '+=' + (words.length * PIXELS_PER_WORD),
     pin: true,
     scrub: 0.5,
     onUpdate: (self) => {
