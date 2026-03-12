@@ -1,80 +1,79 @@
-# Shreyas | Portfolio
+# Shreyas Portfolio
 
-A sleek, dark-themed personal portfolio website inspired by the design language of [Shift5.io](https://shift5.io/) — built to showcase projects, skills, and experience.
+A futuristic, multi-page developer portfolio website built with pure HTML5, CSS3, and Vanilla JavaScript — no frameworks, no build tools.
 
-## ✨ Features
+## Pages
 
-- **Bold, dark aesthetic** — deep blacks, dark grays, electric-blue accent (`#00d4ff`)
-- **Sticky navbar** with smooth-scroll navigation and mobile hamburger menu
-- **Hero section** — full-viewport height with animated grid background, typing effect, and entrance animations
-- **About section** — split layout with animated scroll-triggered counters
-- **Skills section** — category cards (Frontend, Backend, Databases, DevOps & Tools) with hover effects
-- **Projects section** — 6 portfolio cards with filter (All / Frontend / Backend / Full Stack), card-lift hover effects, and gradient thumbnails
-- **Contact section** — styled form with live client-side validation + social links
-- **Footer** — social icons, dynamic copyright year, and back-to-top button
-- **Fully responsive** — mobile, tablet, desktop breakpoints
-- **No frameworks** — pure HTML5 + CSS3 + Vanilla JS, GitHub Pages–ready
+| Page | File | Description |
+|------|------|-------------|
+| Home | `index.html` | Hero, nav cards, tech ticker |
+| About | `about.html` | Bio, timeline, flip cards, resume |
+| Skills | `skills.html` | Flip card skill display with progress rings |
+| Projects | `projects.html` | Filterable project grid with modal |
+| Contact | `contact.html` | Form, FAQ, map placeholder |
 
-## 📁 Project Structure
+## File Structure
 
 ```
 port/
-├── index.html        # Main page — all sections
+├── index.html
+├── about.html
+├── skills.html
+├── projects.html
+├── contact.html
 ├── css/
-│   └── style.css     # All custom styles (CSS variables, grid, flexbox, animations)
-├── js/
-│   └── main.js       # All interactivity (scroll animations, typing, filters, form)
-└── README.md
+│   ├── style.css          # Global styles, variables, navbar, footer
+│   └── pages/
+│       ├── home.css
+│       ├── about.css
+│       ├── skills.css
+│       ├── projects.css
+│       └── contact.css
+└── js/
+    ├── main.js            # Shared: cursor, navbar, scroll reveal, transitions
+    └── pages/
+        ├── home.js        # Typing effect, animated counters
+        ├── about.js       # Timeline, flip cards, skill bars
+        ├── skills.js      # Progress rings, flip cards, filter
+        ├── projects.js    # Filter, staggered animations, modal
+        └── contact.js     # Floating labels, validation, FAQ accordion
 ```
 
-## 🚀 Quick Start
+## Features
 
-### Option 1 — Open locally (no server needed)
+- **Custom cursor** with trailing ring and hover state
+- **CSS star field** using box-shadow (no canvas)
+- **Glitch text** effect on hero title
+- **Glassmorphism** navbar on scroll
+- **Typing effect** cycling through roles
+- **Animated counters** triggered on scroll
+- **Tech ticker marquee** (CSS-only infinite scroll)
+- **Flip cards** for skills and fun facts
+- **Progress rings** using `conic-gradient`
+- **Rotating gradient border** using CSS `@property --angle`
+- **Vertical alternating timeline** on About page
+- **Project filter** with smooth transitions
+- **Project modal** with full details
+- **Floating label form** with live validation
+- **FAQ accordion**
+- **Page transition** fade overlay
+- **Scroll reveal** via IntersectionObserver
+- **Fully responsive** — mobile, tablet, desktop
 
-```bash
-# Clone the repository
-git clone https://github.com/Shreyas099/port.git
-cd port
+## Color Palette
 
-# Open in browser
-open index.html        # macOS
-start index.html       # Windows
-xdg-open index.html    # Linux
-```
+| Variable | Value |
+|----------|-------|
+| `--bg-primary` | `#050505` |
+| `--accent` | `#00d4ff` |
+| `--accent-secondary` | `#7c3aed` |
+| `--accent-tertiary` | `#00ff88` |
+| `--neon-pink` | `#ff0080` |
 
-### Option 2 — GitHub Pages
+## Deployment
 
-1. Push this repo to GitHub (already done ✅)
-2. Go to **Settings → Pages**
-3. Set **Source** to `Deploy from a branch` → `main` → `/ (root)`
-4. Click **Save** — your site will be live at `https://Shreyas099.github.io/port/`
+This site is static and GitHub Pages compatible. Push to a `gh-pages` branch or enable Pages from the repository settings.
 
-## 🎨 Design Tokens
+## License
 
-| Variable | Value | Description |
-|---|---|---|
-| `--bg-primary` | `#0a0a0a` | Page background |
-| `--bg-secondary` | `#111111` | Alternate section background |
-| `--bg-card` | `#1a1a1a` | Card / form background |
-| `--text-primary` | `#ffffff` | Main text |
-| `--text-secondary` | `#a0a0a0` | Muted / secondary text |
-| `--accent` | `#00d4ff` | Electric blue accent |
-| `--accent-hover` | `#00b8d4` | Darker accent on hover |
-| `--border` | `#2a2a2a` | Subtle borders |
-
-## 🛠 Tech Stack
-
-- **HTML5** — Semantic markup, inline SVG icons, `aria-*` accessibility attributes
-- **CSS3** — CSS custom properties, Grid, Flexbox, `@keyframe` animations, `clamp()` for fluid typography, `backdrop-filter` for glassmorphism
-- **Vanilla JavaScript** — Intersection Observer API (scroll animations + counters), typing effect, project filter, mobile menu, form validation
-
-## ✏️ Customisation
-
-1. **Personal info** — Replace placeholder text in `index.html` (name, bio, email, social links)
-2. **Projects** — Update the `<article class="project-card">` blocks with your real projects, GitHub URLs, and live demo links
-3. **Colors** — Edit the CSS variables in `:root` inside `css/style.css`
-4. **Typing phrases** — Edit the `phrases` array in `js/main.js`
-
-## 📄 License
-
-MIT — feel free to use this as a starting point for your own portfolio.
+MIT

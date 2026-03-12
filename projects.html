@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shreyas's projects - Full Stack, Frontend, Backend web applications.">
+  <meta name="theme-color" content="#050505">
+  <title>Projects | Shreyas Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/projects.css">
+</head>
+<body>
+
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Shreyas - Home">
+        <span class="logo-bracket">&lt;</span>Shreyas<span class="logo-bracket">/&gt;</span>
+      </a>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="index.html"    class="nav-link">Home</a>
+        <a href="about.html"   class="nav-link">About</a>
+        <a href="skills.html"  class="nav-link">Skills</a>
+        <a href="projects.html" class="nav-link active">Projects</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn--outline nav-cta">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <nav class="mobile-nav-links">
+        <a href="index.html"    class="mobile-nav-link">Home</a>
+        <a href="about.html"   class="mobile-nav-link">About</a>
+        <a href="skills.html"  class="mobile-nav-link">Skills</a>
+        <a href="projects.html" class="mobile-nav-link active">Projects</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Projects page header">
+      <div class="container page-hero-content">
+        <span class="section-label">// projects[]</span>
+        <h1 class="section-title">My <span class="text-gradient">Projects</span></h1>
+        <p class="section-desc" style="margin: 0 auto;">
+          A collection of things I've built — from side projects to production apps.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Projects list">
+      <div class="container">
+
+        <!-- FILTERS -->
+        <div class="project-filters" role="group" aria-label="Filter projects by category">
+          <button class="proj-filter-btn active" data-filter="all">All Projects</button>
+          <button class="proj-filter-btn" data-filter="frontend">Frontend</button>
+          <button class="proj-filter-btn" data-filter="backend">Backend</button>
+          <button class="proj-filter-btn" data-filter="fullstack">Full Stack</button>
+        </div>
+
+        <!-- FEATURED PROJECT -->
+        <div class="featured-project reveal" aria-label="Featured project: E-Commerce Platform">
+          <div class="featured-img" aria-hidden="true">
+            <div class="project-screen">
+              <div class="screen-bar">
+                <span class="screen-dot"></span>
+                <span class="screen-dot"></span>
+                <span class="screen-dot"></span>
+              </div>
+              <div class="screen-content">
+                <div class="screen-line"></div>
+                <div class="screen-line"></div>
+                <div class="screen-line"></div>
+                <div class="screen-line"></div>
+                <div class="screen-line" style="width:40%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="featured-info">
+            <span class="featured-badge">Featured Project</span>
+            <h2>E-Commerce Platform</h2>
+            <p>A full-featured online shopping platform with real-time inventory, cart management, Stripe payment integration, admin dashboard, and email notifications. Built for scale with a microservices approach.</p>
+            <div class="featured-tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">Redux</span>
+              <span class="tag">Stripe API</span>
+              <span class="tag tag--purple">Full Stack</span>
+            </div>
+            <div class="featured-links">
+              <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                View Code
+              </a>
+              <a href="#" class="btn btn--primary btn--sm">
+                Live Demo →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECTS GRID -->
+        <div class="projects-grid">
+
+          <!-- 1: Portfolio Website -->
+          <article class="project-card"
+            data-category="frontend"
+            data-project
+            data-title="Portfolio Website"
+            data-desc="&lt;p&gt;This very portfolio you're viewing! A multi-page futuristic site built with pure HTML, CSS, and Vanilla JS. Features custom cursor, glassmorphism navbar, CSS star fields, glitch animations, and responsive design.&lt;/p&gt;"
+            data-tags="HTML5,CSS3,JavaScript,CSS Animations"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Portfolio Website project">
+            <div class="project-card-img">
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Frontend</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3>Portfolio Website</h3>
+              <p>Futuristic multi-page portfolio with CSS animations, custom cursor, and glassmorphism.</p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2: Task Management App -->
+          <article class="project-card"
+            data-category="fullstack"
+            data-project
+            data-title="Task Management App"
+            data-desc="&lt;p&gt;A Kanban-style task management application with drag-and-drop boards, user authentication, real-time updates via WebSockets, and team collaboration features. PostgreSQL backend with Express REST API.&lt;/p&gt;"
+            data-tags="Vue.js,Express,PostgreSQL,WebSockets,JWT"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Task Management App project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(0,212,255,0.06));">
+              <div class="project-icon-wrap" style="color: var(--accent-secondary);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Full Stack</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3>Task Management App</h3>
+              <p>Kanban boards with drag-and-drop, real-time updates, and team collaboration.</p>
+              <div class="project-tags">
+                <span class="tag">Vue.js</span>
+                <span class="tag">Express</span>
+                <span class="tag tag--purple">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3: Weather Dashboard -->
+          <article class="project-card"
+            data-category="frontend"
+            data-project
+            data-title="Weather Dashboard"
+            data-desc="&lt;p&gt;An interactive weather dashboard using the OpenWeatherMap API. Features 7-day forecast, interactive charts via Chart.js, geolocation, search autocomplete, and a beautiful dark UI with animated weather icons.&lt;/p&gt;"
+            data-tags="JavaScript,Chart.js,OpenWeatherMap API,Geolocation"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Weather Dashboard project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(0,255,136,0.08));">
+              <div class="project-icon-wrap" style="color: var(--accent-tertiary);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18c-2.2 0-4-1.8-4-4 0-1.9 1.3-3.5 3.1-3.9C5.4 7.9 7 6 9 6c1.3 0 2.4.6 3.1 1.5C12.8 6.6 14 6 15.5 6c2.5 0 4.5 2 4.5 4.5H20c1.1 0 2 .9 2 2s-.9 2-2 2H6z"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Frontend</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3>Weather Dashboard</h3>
+              <p>7-day forecast with charts, geolocation, and animated weather conditions.</p>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Chart.js</span>
+                <span class="tag tag--green">API</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4: Blog Engine -->
+          <article class="project-card"
+            data-category="backend"
+            data-project
+            data-title="Blog Engine"
+            data-desc="&lt;p&gt;A headless blog engine built with FastAPI and PostgreSQL. Features markdown rendering, tag system, full-text search, RSS feed generation, comment system, and a REST API that can power any frontend.&lt;/p&gt;"
+            data-tags="Python,FastAPI,PostgreSQL,SQLAlchemy,Markdown"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Blog Engine project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(255,0,128,0.06));">
+              <div class="project-icon-wrap" style="color: var(--accent-secondary);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Backend</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3>Blog Engine</h3>
+              <p>Headless CMS with FastAPI, full-text search, markdown rendering, and RSS.</p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag tag--purple">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5: Real-Time Chat -->
+          <article class="project-card"
+            data-category="fullstack"
+            data-project
+            data-title="Real-Time Chat App"
+            data-desc="&lt;p&gt;A real-time messaging application featuring private and group chats, typing indicators, read receipts, file uploads, emoji reactions, and push notifications using Socket.io with a React frontend and Node.js backend.&lt;/p&gt;"
+            data-tags="React,Node.js,Socket.io,MongoDB,JWT"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Real-Time Chat App project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(0,255,136,0.06), rgba(0,212,255,0.06));">
+              <div class="project-icon-wrap" style="color: var(--accent-tertiary);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Full Stack</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3>Real-Time Chat</h3>
+              <p>Messaging app with Socket.io, group chats, typing indicators, and file uploads.</p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Socket.io</span>
+                <span class="tag tag--green">Node.js</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6: AI Image Generator -->
+          <article class="project-card"
+            data-category="fullstack"
+            data-project
+            data-title="AI Image Generator"
+            data-desc="&lt;p&gt;A full-stack AI image generation app powered by the OpenAI DALL-E API. Users can generate, save, and share AI artwork. Features a gallery, prompt history, image variations, and social sharing. Built with React and FastAPI.&lt;/p&gt;"
+            data-tags="React,Python,FastAPI,OpenAI API,AWS S3"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="AI Image Generator project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(255,0,128,0.06), rgba(124,58,237,0.08));">
+              <div class="project-icon-wrap" style="color: var(--neon-pink);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Full Stack</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3>AI Image Generator</h3>
+              <p>Generate, save, and share AI artwork using DALL-E API with a social gallery.</p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag tag--purple">OpenAI</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7: Dev Portfolio Template -->
+          <article class="project-card"
+            data-category="frontend"
+            data-project
+            data-title="Dev Portfolio Template"
+            data-desc="&lt;p&gt;An open-source, minimalist portfolio template for developers. Pure HTML/CSS/JS with zero dependencies. Features dark mode, responsive design, smooth animations, and easy customization via CSS variables. MIT licensed.&lt;/p&gt;"
+            data-tags="HTML5,CSS3,JavaScript,Open Source,MIT"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="Dev Portfolio Template project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));">
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Frontend</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3>Dev Portfolio Template</h3>
+              <p>Open-source portfolio template — zero dependencies, MIT licensed, easy to customize.</p>
+              <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag tag--green">Open Source</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8: REST API Starter -->
+          <article class="project-card"
+            data-category="backend"
+            data-project
+            data-title="REST API Boilerplate"
+            data-desc="&lt;p&gt;A production-ready Node.js REST API starter kit with Express, PostgreSQL, JWT authentication, role-based access control, rate limiting, request logging, API documentation with Swagger, and comprehensive test suite.&lt;/p&gt;"
+            data-tags="Node.js,Express,PostgreSQL,JWT,Swagger,Jest"
+            data-github="https://github.com/Shreyas099"
+            data-live="#"
+            aria-label="REST API Boilerplate project">
+            <div class="project-card-img" style="background: linear-gradient(135deg, rgba(0,255,136,0.05), rgba(124,58,237,0.06));">
+              <div class="project-icon-wrap" style="color: var(--accent-tertiary);" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 9-12h-9l1-8z"/></svg>
+              </div>
+              <div class="project-overlay" aria-hidden="true">
+                <button class="btn btn--ghost btn--sm" data-modal-open>Details</button>
+                <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">GitHub →</a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-category">Backend</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3>REST API Boilerplate</h3>
+              <p>Production-ready Node.js API starter with auth, RBAC, rate limiting, and Swagger docs.</p>
+              <div class="project-tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag tag--green">JWT</span>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- .projects-grid -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-desc"></div>
+        <div class="modal-tags" id="modal-tags"></div>
+        <div class="modal-links" id="modal-links"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <a href="index.html" class="footer-logo"><span>&lt;</span>Shreyas<span>/&gt;</span></a>
+        <div class="footer-social">
+          <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links" role="navigation" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year"></span> Shreyas. All rights reserved.</p>
+        <a href="#top" class="back-to-top" aria-label="Back to top">↑ Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/pages/projects.js"></script>
+</body>
+</html>

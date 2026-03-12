@@ -1,0 +1,270 @@
+/* ============================================================
+   SKILLS PAGE STYLES - css/pages/skills.css
+   ============================================================ */
+
+/* ============================================================
+   CATEGORY HEADERS
+   ============================================================ */
+.skill-category {
+  margin-bottom: var(--space-3xl);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.category-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.category-icon.frontend  { background: rgba(0, 212, 255, 0.1);   color: var(--accent); }
+.category-icon.backend   { background: rgba(124, 58, 237, 0.1);  color: var(--accent-secondary); }
+.category-icon.database  { background: rgba(0, 255, 136, 0.1);   color: var(--accent-tertiary); }
+.category-icon.devops    { background: rgba(255, 0, 128, 0.1);   color: var(--neon-pink); }
+.category-icon.languages { background: rgba(255, 200, 0, 0.1);   color: #ffc800; }
+
+.category-icon svg { width: 26px; height: 26px; }
+
+.category-header h3 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.category-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.75rem;
+}
+
+/* ============================================================
+   SKILL FLIP CARDS
+   ============================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-lg);
+}
+
+.skill-flip-card {
+  height: 200px;
+  perspective: 1000px;
+  cursor: none;
+}
+
+.skill-flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-flip-card:hover .skill-flip-inner,
+.skill-flip-card.flipped .skill-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.skill-front,
+.skill-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.skill-front {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: border-color var(--transition-base);
+}
+
+.skill-flip-card:hover .skill-front {
+  border-color: var(--border-glow);
+}
+
+.skill-back {
+  background: linear-gradient(135deg, var(--bg-card), rgba(0, 212, 255, 0.05));
+  border: 1px solid var(--border-glow);
+  transform: rotateY(180deg);
+}
+
+.skill-svg-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  padding: 10px;
+  color: var(--accent);
+}
+
+.skill-svg-icon svg { width: 100%; height: 100%; }
+
+.skill-name {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Progress ring on card back */
+.progress-ring-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--space-sm);
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) calc(var(--progress, 80) * 1%), rgba(255,255,255,0.04) 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  background: var(--bg-card);
+  border-radius: 50%;
+}
+
+.progress-ring-pct {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.skill-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================================
+   FILTER BUTTONS
+   ============================================================ */
+.skill-filters {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: none;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.05em;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================================
+   CURRENTLY LEARNING SECTION
+   ============================================================ */
+.learning-section {
+  background: var(--bg-secondary);
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.learning-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: all var(--transition-base);
+}
+
+.learning-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.learning-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-tertiary);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.learning-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent-tertiary);
+  animation: ping 1.5s ease-out infinite;
+}
+
+.learning-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.learning-info span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
