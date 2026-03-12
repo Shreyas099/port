@@ -92,13 +92,13 @@
 
     const error = fn(value);
     if (error) {
-      group.classList.add('error');
-      group.classList.remove('success');
+      group.classList.add('error', 'invalid');
+      group.classList.remove('success', 'valid');
       if (errorEl) errorEl.textContent = error;
       return false;
     } else {
-      group.classList.remove('error');
-      group.classList.add('success');
+      group.classList.remove('error', 'invalid');
+      group.classList.add('success', 'valid');
       if (errorEl) errorEl.textContent = '';
       return true;
     }
@@ -143,10 +143,21 @@
         submitBtn.textContent = 'Send Message →';
       }
       // Clear validation state
-      form.querySelectorAll('.form-group').forEach(g => g.classList.remove('success', 'error', 'focused'));
+      form.querySelectorAll('.form-group').forEach(g => g.classList.remove('success', 'error', 'focused', 'valid', 'invalid'));
 
-      if (successMsg) successMsg.classList.add('visible');
-      setTimeout(() => successMsg?.classList.remove('visible'), 5000);
+      if (successMsg) {
+        // Inject success icon if not already present
+        if (!successMsg.querySelector('.success-icon')) {
+          const iconHTML = `<div class="success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>`;
+          successMsg.insertAdjacentHTML('afterbegin', iconHTML);
+        }
+        successMsg.classList.add('visible');
+        setTimeout(() => successMsg.classList.remove('visible'), 5000);
+      }
     }, 1200);
   });
 })();

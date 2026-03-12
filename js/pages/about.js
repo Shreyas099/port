@@ -92,3 +92,41 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
 
   bars.forEach(bar => observer.observe(bar));
 })();
+
+/* ============================================================
+   ANIMATED TIMELINE PROGRESS LINE — draws itself on scroll
+   ============================================================ */
+(function initTimelineProgressLine() {
+  const timeline = document.querySelector('.timeline');
+  if (!timeline) return;
+
+  // Inject progress line and dot
+  const line = document.createElement('div');
+  line.className = 'timeline-progress-line';
+  line.setAttribute('aria-hidden', 'true');
+  timeline.style.position = 'relative';
+  timeline.prepend(line);
+
+  const dot = document.createElement('div');
+  dot.className = 'timeline-progress-dot';
+  dot.setAttribute('aria-hidden', 'true');
+  timeline.prepend(dot);
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !_prefersReducedMotion) {
+    const timelineHeight = () => timeline.offsetHeight;
+
+    gsap.to([line, dot], {
+      scrollTrigger: {
+        trigger: timeline,
+        start: 'top 70%',
+        end: 'bottom 30%',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const pct = self.progress * 100;
+          line.style.height = pct + '%';
+          dot.style.top     = pct + '%';
+        }
+      }
+    });
+  }
+})();

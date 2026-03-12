@@ -117,3 +117,51 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
     });
   });
 })();
+
+/* ============================================================
+   CATEGORY HEADER PULSE ON SCROLL
+   ============================================================ */
+(function initCategoryPulse() {
+  const headers = document.querySelectorAll('.skill-category-header');
+  if (!headers.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('pulsed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  headers.forEach(h => observer.observe(h));
+})();
+
+/* ============================================================
+   SKILL COUNT BADGES — show count per category
+   ============================================================ */
+(function initSkillCountBadges() {
+  document.querySelectorAll('.skill-category').forEach(cat => {
+    const header = cat.querySelector('.skill-category-header h3, .skill-category h3');
+    if (!header) return;
+
+    const count = cat.querySelectorAll('.skill-flip-card').length;
+    if (!count) return;
+
+    const badge = document.createElement('span');
+    badge.className = 'skill-count-badge';
+    badge.textContent = count;
+    header.appendChild(badge);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => badge.classList.add('visible'), 200);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(header);
+  });
+})();

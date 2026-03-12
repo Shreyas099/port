@@ -5,20 +5,75 @@
 const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ============================================================
-   CATEGORY FILTER
+   CATEGORY FILTER — smooth GSAP transitions + count badges
    ============================================================ */
 (function initProjectFilter() {
   const buttons = document.querySelectorAll('.proj-filter-btn');
   const cards   = document.querySelectorAll('.project-card[data-category]');
   if (!buttons.length) return;
 
+  /* ---- Count badges ---- */
   buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    const count  = filter === 'all'
+      ? cards.length
+      : Array.from(cards).filter(c => c.dataset.category === filter).length;
 
-      const filter = btn.dataset.filter;
+    const badge = document.createElement('span');
+    badge.className = 'filter-count';
+    badge.textContent = count;
+    btn.appendChild(badge);
+  });
 
+  /* ---- Sliding indicator ---- */
+  const filtersEl = document.querySelector('.proj-filters');
+  let indicator   = null;
+  if (filtersEl) {
+    indicator = document.createElement('div');
+    indicator.className = 'filter-indicator';
+    filtersEl.style.position = 'relative';
+    filtersEl.appendChild(indicator);
+  }
+
+  function moveIndicator(activeBtn) {
+    if (!indicator || !activeBtn) return;
+    const filtersRect = filtersEl.getBoundingClientRect();
+    const btnRect     = activeBtn.getBoundingClientRect();
+    indicator.style.left  = (btnRect.left - filtersRect.left) + 'px';
+    indicator.style.width = btnRect.width + 'px';
+  }
+
+  // Initial position
+  const initialActive = document.querySelector('.proj-filter-btn.active');
+  if (initialActive) requestAnimationFrame(() => moveIndicator(initialActive));
+
+  /* ---- Filter action ---- */
+  function filterCards(filter, activeBtn) {
+    buttons.forEach(b => b.classList.remove('active'));
+    activeBtn.classList.add('active');
+    moveIndicator(activeBtn);
+
+    if (typeof gsap !== 'undefined' && !_prefersReducedMotion) {
+      let visibleIndex = 0;
+      cards.forEach(card => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        if (matches) {
+          card.classList.remove('hidden', 'filter-hidden');
+          gsap.fromTo(card,
+            { opacity: 0, y: 24, scale: 0.96 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.5,
+              delay: visibleIndex * 0.06, ease: 'power3.out' }
+          );
+          visibleIndex++;
+        } else {
+          gsap.to(card, {
+            opacity: 0, y: 16, scale: 0.95, duration: 0.3, ease: 'power2.in',
+            onComplete: () => card.classList.add('hidden', 'filter-hidden')
+          });
+        }
+      });
+    } else {
+      // Fallback
       let visibleIndex = 0;
       cards.forEach(card => {
         const matches = filter === 'all' || card.dataset.category === filter;
@@ -32,6 +87,12 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
           card.classList.add('hidden');
         }
       });
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterCards(btn.dataset.filter, btn);
     });
   });
 })();
@@ -51,7 +112,7 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
         y: 0,
         opacity: 1,
         duration: 0.8,
-        stagger: 0.1,
+        stagger: { each: 0.08, from: 'start' },
         ease: 'power3.out',
         scrollTrigger: {
           trigger: grid || cards[0],

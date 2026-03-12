@@ -476,3 +476,102 @@
   .contact-layout { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   INPUT FOCUS — glowing animated border
+   ============================================================ */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255,107,0,0.12), 0 0 16px rgba(255,107,0,0.1);
+  animation: input-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes input-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(255,107,0,0.12), 0 0 16px rgba(255,107,0,0.1); }
+  50%       { box-shadow: 0 0 0 3px rgba(255,107,0,0.2),  0 0 24px rgba(255,107,0,0.2); }
+}
+
+/* ============================================================
+   VALIDATION — visual feedback red/green
+   ============================================================ */
+.form-group.valid input,
+.form-group.valid textarea {
+  border-color: var(--accent-tertiary);
+  box-shadow: 0 0 0 2px rgba(196,245,66,0.12);
+  animation: none;
+}
+
+.form-group.invalid input,
+.form-group.invalid textarea {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 0 2px rgba(255,45,85,0.12);
+  animation: input-invalid-shake 0.3s ease;
+}
+
+@keyframes input-invalid-shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+/* ============================================================
+   SUCCESS ANIMATION — checkmark burst
+   ============================================================ */
+.form-success {
+  text-align: center;
+}
+
+.success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(196,245,66,0.1);
+  border: 2px solid var(--accent-tertiary);
+  margin: 0 auto var(--space-lg);
+  animation: success-burst 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.success-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-tertiary);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-check 0.5s ease 0.2s forwards;
+}
+
+@keyframes success-burst {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ============================================================
+   CONTACT INFO CARD — hover slide-up reveal
+   ============================================================ */
+.contact-info-item {
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-info-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow), var(--shadow-card);
+}
+
+/* Animated icon bounce on scroll */
+.contact-info-item.visible .contact-icon {
+  animation: icon-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes icon-bounce {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}

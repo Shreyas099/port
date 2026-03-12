@@ -394,3 +394,135 @@
   .flip-cards-grid { grid-template-columns: 1fr 1fr; }
   .about-meta { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   HOLOGRAPHIC / PRISMATIC SHIMMER ON PROFILE FRAME
+   ============================================================ */
+.profile-frame {
+  position: relative;
+  overflow: visible;
+}
+.profile-frame::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg,
+    rgba(255,107,0,0.6),
+    rgba(168,85,247,0.6),
+    rgba(196,245,66,0.6),
+    rgba(255,45,85,0.6),
+    rgba(255,107,0,0.6));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: none;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(4px);
+}
+.profile-frame:hover::after {
+  opacity: 1;
+  animation: holographic-spin 3s linear infinite;
+}
+
+@keyframes holographic-spin {
+  to { filter: blur(4px) hue-rotate(360deg); }
+}
+
+/* Shimmer sweep on hover */
+.profile-img-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 3;
+  transition: none;
+}
+.profile-frame:hover .profile-img-wrap::before {
+  animation: shine-sweep 0.7s ease forwards;
+}
+
+@keyframes shine-sweep {
+  from { left: -100%; }
+  to   { left: 150%; }
+}
+
+/* ============================================================
+   ANIMATED TIMELINE LINE — draws itself on scroll
+   ============================================================ */
+.timeline {
+  position: relative;
+}
+.timeline-progress-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 8px var(--accent);
+  pointer-events: none;
+  transition: none;
+}
+
+/* Glowing dot traveling along timeline */
+.timeline-progress-dot {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(255,107,0,0.4);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .timeline-progress-line,
+  .timeline-progress-dot { left: 20px; }
+}
+
+/* ============================================================
+   PHILOSOPHY / VALUES — glassmorphism cards with animated border
+   ============================================================ */
+.philosophy-card {
+  position: relative;
+  background: rgba(22, 20, 30, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 107, 0, 0.12);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+.philosophy-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle),
+    rgba(255,107,0,0.5), rgba(168,85,247,0.5),
+    rgba(196,245,66,0.3), rgba(255,107,0,0.5));
+  animation: rotate-border 5s linear infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.philosophy-card:hover::before { opacity: 1; }
+.philosophy-card:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-glow), var(--shadow-card);
+}
