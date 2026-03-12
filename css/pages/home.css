@@ -534,3 +534,114 @@
     width: 100%;
   }
 }
+
+/* ============================================================
+   ENHANCED GLITCH — RGB channel separation
+   ============================================================ */
+.glitch {
+  animation: rgb-shift 6s infinite steps(1);
+}
+
+@keyframes rgb-shift {
+  0%, 85%, 100% { text-shadow: none; }
+  86% { text-shadow: -3px 0 rgba(255,45,85,0.7), 3px 0 rgba(0,212,255,0.7); }
+  87% { text-shadow: 2px 0 rgba(255,45,85,0.7), -2px 0 rgba(0,212,255,0.7); }
+  88% { text-shadow: none; }
+  92% { text-shadow: -4px 0 rgba(255,107,0,0.7), 4px 0 rgba(168,85,247,0.7); }
+  93% { text-shadow: none; }
+}
+
+/* ============================================================
+   NAV CARD — gradient border glow follows mouse
+   ============================================================ */
+.nav-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.nav-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255,107,0,0.4), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.nav-card:hover::after { opacity: 1; }
+
+/* ============================================================
+   REVERSE TICKER ROW
+   ============================================================ */
+.ticker-section--reverse {
+  border-top: none;
+  padding-top: 0;
+}
+.ticker-section--reverse .ticker-track {
+  animation: ticker-scroll-reverse 25s linear infinite;
+  flex-direction: row;
+}
+.ticker-section--reverse .ticker-item {
+  color: var(--text-secondary);
+}
+.ticker-section--reverse .ticker-item span {
+  color: var(--accent-secondary);
+}
+
+/* Hover pause on ticker items */
+.ticker-item:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 12px var(--accent);
+  cursor: default;
+}
+
+/* ============================================================
+   PINNED QUOTE — enhanced blur/scale transition handled by CSS
+   ============================================================ */
+.pinned-quote-section {
+  position: relative;
+}
+.pinned-quote-section .dot-grid-bg {
+  opacity: 0.15;
+}
+
+/* Floating decorative dots around quote */
+.quote-deco {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.4;
+  animation: float 6s ease-in-out infinite;
+}
+.quote-deco:nth-child(1) {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  top: 20%; left: 10%;
+  animation-delay: 0s;
+}
+.quote-deco:nth-child(2) {
+  width: 4px; height: 4px;
+  background: var(--accent-secondary);
+  top: 60%; left: 5%;
+  animation-delay: 1.5s;
+}
+.quote-deco:nth-child(3) {
+  width: 8px; height: 8px;
+  background: var(--accent-tertiary);
+  top: 30%; right: 8%;
+  animation-delay: 3s;
+}
+.quote-deco:nth-child(4) {
+  width: 5px; height: 5px;
+  background: var(--neon-pink);
+  top: 70%; right: 12%;
+  animation-delay: 4.5s;
+}
+
+/* ============================================================
+   HORIZONTAL SCROLL — improved visual
+   ============================================================ */
+.horizontal-scroll-section {
+  height: 100vh;
+}

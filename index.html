@@ -82,6 +82,12 @@
          HERO SECTION
          ==================================================== -->
     <section class="hero" id="home" aria-label="Hero section">
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+      <div class="aurora-bg" aria-hidden="true">
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+      </div>
       <div class="crt-overlay" aria-hidden="true" data-parallax="0.3"></div>
 
       <div class="hero-content">
@@ -248,6 +254,47 @@
       </div>
     </div>
 
+    <!-- Second ticker row — scrolls in reverse -->
+    <div class="ticker-section ticker-section--reverse" aria-hidden="true">
+      <div class="ticker-wrapper">
+        <div class="ticker-track">
+          <span class="ticker-item">Figma<span>◆</span></span>
+          <span class="ticker-item">Tailwind<span>◆</span></span>
+          <span class="ticker-item">Next.js<span>◆</span></span>
+          <span class="ticker-item">Prisma<span>◆</span></span>
+          <span class="ticker-item">Kubernetes<span>◆</span></span>
+          <span class="ticker-item">Terraform<span>◆</span></span>
+          <span class="ticker-item">Jest<span>◆</span></span>
+          <span class="ticker-item">Playwright<span>◆</span></span>
+          <span class="ticker-item">Rust<span>◆</span></span>
+          <span class="ticker-item">Go<span>◆</span></span>
+          <span class="ticker-item">Kafka<span>◆</span></span>
+          <span class="ticker-item">ElasticSearch<span>◆</span></span>
+          <span class="ticker-item">Three.js<span>◆</span></span>
+          <span class="ticker-item">GSAP<span>◆</span></span>
+          <span class="ticker-item">WebSockets<span>◆</span></span>
+          <span class="ticker-item">CI/CD<span>◆</span></span>
+          <!-- Duplicate -->
+          <span class="ticker-item">Figma<span>◆</span></span>
+          <span class="ticker-item">Tailwind<span>◆</span></span>
+          <span class="ticker-item">Next.js<span>◆</span></span>
+          <span class="ticker-item">Prisma<span>◆</span></span>
+          <span class="ticker-item">Kubernetes<span>◆</span></span>
+          <span class="ticker-item">Terraform<span>◆</span></span>
+          <span class="ticker-item">Jest<span>◆</span></span>
+          <span class="ticker-item">Playwright<span>◆</span></span>
+          <span class="ticker-item">Rust<span>◆</span></span>
+          <span class="ticker-item">Go<span>◆</span></span>
+          <span class="ticker-item">Kafka<span>◆</span></span>
+          <span class="ticker-item">ElasticSearch<span>◆</span></span>
+          <span class="ticker-item">Three.js<span>◆</span></span>
+          <span class="ticker-item">GSAP<span>◆</span></span>
+          <span class="ticker-item">WebSockets<span>◆</span></span>
+          <span class="ticker-item">CI/CD<span>◆</span></span>
+        </div>
+      </div>
+    </div>
+
     <!-- ====================================================
          HORIZONTAL SCROLL SHOWCASE SECTION
          ==================================================== -->
@@ -286,6 +333,11 @@
          PINNED QUOTE SECTION
          ==================================================== -->
     <section class="pinned-quote-section" aria-label="Philosophy quote">
+      <div class="dot-grid-bg" aria-hidden="true"></div>
+      <div class="quote-deco" aria-hidden="true"></div>
+      <div class="quote-deco" aria-hidden="true"></div>
+      <div class="quote-deco" aria-hidden="true"></div>
+      <div class="quote-deco" aria-hidden="true"></div>
       <div class="container">
         <p class="pinned-quote">
           <span class="quote-word">I</span>
@@ -344,6 +396,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/particles.js"></script>
   <script src="js/pages/home.js"></script>
 </body>
 </html>

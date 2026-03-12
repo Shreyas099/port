@@ -116,8 +116,8 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
 (function initHeroAnimations() {
   if (typeof gsap === 'undefined' || _prefersReducedMotion) return;
 
-  // Preloader total duration: chars(0.5) + bar(1.2, offset -0.3) + exit(0.8) ≈ 2.2s
-  const HERO_ANIM_DELAY = 2.2;
+  // Preloader total duration: chars(0.5) + bar(1.2, offset -0.3) + exit(0.8) + strips(0.55) ≈ 2.7s
+  const HERO_ANIM_DELAY = 2.7;
 
   gsap.fromTo('.hero-greeting',
     { y: 30, opacity: 0 },
@@ -146,28 +146,89 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
 })();
 
 /* ============================================================
-   PINNED QUOTE — word-by-word reveal on scroll
+   NAV CARD 3D TILT — perspective tilt toward cursor
+   ============================================================ */
+(function initNavCard3DTilt() {
+  if ('ontouchstart' in window || _prefersReducedMotion) return;
+
+  document.querySelectorAll('.nav-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect   = card.getBoundingClientRect();
+      const x      = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
+      const y      = (e.clientY - rect.top)  / rect.height - 0.5;
+      const rotX   = -y * 12;
+      const rotY   =  x * 12;
+
+      /* Update gradient mouse position CSS vars */
+      card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--mouse-y', ((e.clientY - rect.top)  / rect.height * 100) + '%');
+
+      if (typeof gsap !== 'undefined') {
+        gsap.to(card, {
+          rotateX: rotX,
+          rotateY: rotY,
+          transformPerspective: 800,
+          duration: 0.3,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
+      } else {
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px)`;
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.removeProperty('--mouse-x');
+      card.style.removeProperty('--mouse-y');
+      if (typeof gsap !== 'undefined') {
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)',
+          overwrite: 'auto',
+        });
+      } else {
+        card.style.transform = '';
+      }
+    });
+  });
+})();
+
+/* ============================================================
+   PINNED QUOTE — word-by-word reveal with blur+scale on scroll
    ============================================================ */
 (function initPinnedQuote() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || _prefersReducedMotion) return;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || _prefersReducedMotion) {
+    // Fallback — show all words immediately
+    document.querySelectorAll('.quote-word').forEach(w => {
+      w.style.opacity = '1';
+      w.style.filter  = 'none';
+      w.style.transform = 'none';
+    });
+    return;
+  }
 
   const section = document.querySelector('.pinned-quote-section');
   const words   = gsap.utils.toArray('.quote-word');
   if (!section || !words.length) return;
 
-  const PIXELS_PER_WORD = 120; // Scroll pixels per word reveal step
+  const PIXELS_PER_WORD = 100;
 
   ScrollTrigger.create({
     trigger: section,
     start: 'top top',
     end: '+=' + (words.length * PIXELS_PER_WORD),
     pin: true,
-    scrub: 0.5,
+    scrub: 0.8,
     onUpdate: (self) => {
       const progress = self.progress;
       words.forEach((word, i) => {
         const wordProgress = (i + 1) / words.length;
-        word.style.opacity = progress >= wordProgress - 0.05 ? '1' : '0.15';
+        const lit = progress >= wordProgress - 0.05;
+        word.style.opacity   = lit ? '1' : '0.12';
+        word.style.filter    = lit ? 'blur(0px)' : 'blur(6px)';
+        word.style.transform = lit ? 'scale(1) translateY(0)' : 'scale(0.9) translateY(8px)';
       });
     }
   });
@@ -180,24 +241,63 @@ const _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || _prefersReducedMotion) return;
 
   const section = document.querySelector('.horizontal-scroll-section');
-  const track = document.querySelector('.horizontal-scroll-track');
+  const track   = document.querySelector('.horizontal-scroll-track');
   if (!section || !track) return;
 
   // On mobile, skip the pinned horizontal scroll
-  if (window.innerWidth <= 768) return;
+  if (window.innerWidth <= 768) {
+    section.style.height = 'auto';
+    return;
+  }
 
-  const getScrollAmount = () => track.scrollWidth - section.clientWidth;
+  function getScrollAmount() {
+    // Amount to scroll = total track width minus one viewport width
+    // Use clientWidth to exclude potential scrollbar width
+    return track.scrollWidth - document.documentElement.clientWidth;
+  }
 
-  gsap.to(track, {
+  const tween = gsap.to(track, {
     x: () => -getScrollAmount(),
     ease: 'none',
     scrollTrigger: {
       trigger: section,
       start: 'top top',
-      end: () => '+=' + getScrollAmount(),
+      end: () => '+=' + Math.max(getScrollAmount(), 100),
       pin: true,
-      scrub: 1,
+      scrub: 1.2,
+      anticipatePin: 1,
       invalidateOnRefresh: true,
     }
+  });
+
+  // Refresh on resize to recalculate dimensions
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth <= 768) {
+        tween.scrollTrigger.kill();
+        section.style.height = 'auto';
+        track.style.transform = '';
+      }
+      ScrollTrigger.refresh();
+    }, 250);
+  }, { passive: true });
+})();
+
+/* ============================================================
+   TICKER — hover pause & second row
+   ============================================================ */
+(function initTickerEnhancements() {
+  // Hover-pause on ticker items
+  document.querySelectorAll('.ticker-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const track = item.closest('.ticker-track');
+      if (track) track.style.animationPlayState = 'paused';
+    });
+    item.addEventListener('mouseleave', () => {
+      const track = item.closest('.ticker-track');
+      if (track) track.style.animationPlayState = 'running';
+    });
   });
 })();

@@ -74,7 +74,8 @@
   <main id="top">
 
     <!-- PAGE HERO -->
-    <section class="page-hero" aria-label="Contact page header">
+    <section class="page-hero" style="position:relative;overflow:hidden;" aria-label="Contact page header">
+      <div class="aurora-bg" aria-hidden="true"><div class="aurora-blob"></div><div class="aurora-blob"></div></div>
       <div class="container page-hero-content">
         <span class="section-label">// contact.init()</span>
         <h1 class="section-title">Let's <span class="text-gradient">Build Something</span></h1>
@@ -199,6 +200,11 @@
 
               <!-- Success message -->
               <div class="form-success-msg" id="form-success" role="status" aria-live="polite">
+                <div class="success-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
                 <p>✅ Message sent! I'll get back to you within 24 hours.</p>
               </div>
             </div>

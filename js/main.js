@@ -397,12 +397,14 @@ function initPageTransitions() {
 }
 
 /* ============================================================
-   AMBIENT PARTICLES — subtle floating canvas particles
+   AMBIENT PARTICLES — subtle floating canvas particles (non-home pages)
    ============================================================ */
 function initAmbientParticles() {
   if (prefersReducedMotion) return;
   // Skip on primary pointer: coarse (phones/tablets without mouse) to save resources
   if (window.matchMedia('(pointer: coarse)').matches) return;
+  // Skip on home page — it has the full hero particle canvas
+  if (document.getElementById('particle-canvas')) return;
 
   const canvas = document.createElement('canvas');
   canvas.className = 'ambient-particles';
@@ -411,7 +413,8 @@ function initAmbientParticles() {
 
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const PARTICLE_COUNT = 40;
+  const PARTICLE_COUNT = 35;
+  const COLORS = ['rgba(255,107,0,', 'rgba(168,85,247,', 'rgba(196,245,66,'];
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -424,10 +427,11 @@ function initAmbientParticles() {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.3 + 0.1,
+        size: Math.random() * 1.5 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.25,
+        opacity: Math.random() * 0.2 + 0.05,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
       });
     }
   }
@@ -437,15 +441,13 @@ function initAmbientParticles() {
     particles.forEach(p => {
       p.x += p.speedX;
       p.y += p.speedY;
-
       if (p.x < 0) p.x = canvas.width;
       if (p.x > canvas.width) p.x = 0;
       if (p.y < 0) p.y = canvas.height;
       if (p.y > canvas.height) p.y = 0;
-
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 107, 0, ${p.opacity})`;
+      ctx.fillStyle = p.color + p.opacity + ')';
       ctx.fill();
     });
     requestAnimationFrame(animate);
@@ -454,7 +456,105 @@ function initAmbientParticles() {
   resize();
   createParticles();
   animate();
-  window.addEventListener('resize', () => { resize(); createParticles(); });
+  window.addEventListener('resize', () => { resize(); createParticles(); }, { passive: true });
+}
+
+/* ============================================================
+   CURSOR TRAILING GHOSTS — 3 fading copies
+   ============================================================ */
+function initCursorTrails() {
+  if ('ontouchstart' in window || prefersReducedMotion) return;
+
+  const trails = [];
+  const TRAIL_COUNT = 3;
+  const trailClasses = ['cursor-trail cursor-trail-1', 'cursor-trail cursor-trail-2', 'cursor-trail cursor-trail-3'];
+  const delays = [0.12, 0.22, 0.35];
+
+  for (let i = 0; i < TRAIL_COUNT; i++) {
+    const el = document.createElement('div');
+    el.className = trailClasses[i];
+    el.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(el);
+
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      const delay = delays[i];
+      const tx = gsap.quickTo(el, 'left', { duration: delay + 0.1, ease: 'power2' });
+      const ty = gsap.quickTo(el, 'top',  { duration: delay + 0.1, ease: 'power2' });
+      trails.push({ el, tx, ty });
+    } else {
+      trails.push({ el, x: 0, y: 0, lag: (i + 1) * 0.08 });
+    }
+  }
+
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    document.addEventListener('mousemove', (e) => {
+      trails.forEach(t => { t.tx(e.clientX); t.ty(e.clientY); });
+    }, { passive: true });
+  } else {
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    trails.forEach(t => {
+      (function animate() {
+        t.x += (mx - t.x) * (1 - t.lag);
+        t.y += (my - t.y) * (1 - t.lag);
+        t.el.style.left = t.x + 'px';
+        t.el.style.top  = t.y + 'px';
+        requestAnimationFrame(animate);
+      })();
+    });
+  }
+
+  document.addEventListener('mouseleave', () => {
+    trails.forEach(t => { t.el.style.opacity = '0'; });
+  });
+  document.addEventListener('mouseenter', () => {
+    trails.forEach((t, i) => { t.el.style.opacity = ['0.5','0.3','0.15'][i]; });
+  });
+}
+
+/* ============================================================
+   CLICK RIPPLE — expanding ring on mouse click
+   ============================================================ */
+function initClickRipple() {
+  if ('ontouchstart' in window || prefersReducedMotion) return;
+
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top  = e.clientY + 'px';
+    document.body.appendChild(ripple);
+
+    if (typeof gsap !== 'undefined') {
+      gsap.fromTo(ripple,
+        { width: 0, height: 0, opacity: 0.8 },
+        {
+          width: 80, height: 80, opacity: 0, duration: 0.6, ease: 'power2.out',
+          onComplete: () => ripple.remove()
+        }
+      );
+    } else {
+      ripple.style.transition = 'all 0.6s ease';
+      requestAnimationFrame(() => {
+        ripple.style.width   = '80px';
+        ripple.style.height  = '80px';
+        ripple.style.opacity = '0';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    }
+  });
+}
+
+/* ============================================================
+   NOISE OVERLAY — film grain
+   ============================================================ */
+function initNoiseOverlay() {
+  if (prefersReducedMotion) return;
+  if (document.querySelector('.noise-overlay')) return;
+  const noise = document.createElement('div');
+  noise.className = 'noise-overlay';
+  noise.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(noise);
 }
 
 /* ============================================================
@@ -547,6 +647,8 @@ function initScrollToTop() {
 function initPageEntranceAnimations() {
   initSmartNavbar();
   initGSAPCursor();
+  initCursorTrails();
+  initClickRipple();
   initMagneticHover();
   initScrollAnimations();
   initParallax();
@@ -555,6 +657,7 @@ function initPageEntranceAnimations() {
   initAmbientParticles();
   initTextScramble();
   initScrollProgress();
+  initNoiseOverlay();
 }
 
 function initPreloader() {
@@ -570,6 +673,19 @@ function initPreloader() {
   const chars   = preloader.querySelectorAll('.preloader-char');
   const barFill = preloader.querySelector('.preloader-bar-fill');
   const counter = preloader.querySelector('.preloader-counter');
+
+  // Pre-create the page transition overlay so it's ready for the entry animation
+  let overlay = document.querySelector('.page-transition-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'page-transition-overlay';
+    for (let i = 0; i < 5; i++) {
+      const strip = document.createElement('div');
+      strip.className = 'transition-strip';
+      overlay.appendChild(strip);
+    }
+    document.body.appendChild(overlay);
+  }
 
   const tl = gsap.timeline();
 
@@ -601,7 +717,23 @@ function initPreloader() {
     ease: 'power3.inOut',
     onComplete: () => {
       preloader.remove();
-      initPageEntranceAnimations();
+
+      // Multi-strip page entry reveal — strips slide away to expose the page
+      const overlay = document.querySelector('.page-transition-overlay');
+      const entryStrips = overlay ? overlay.querySelectorAll('.transition-strip') : [];
+      if (entryStrips.length) {
+        gsap.set(entryStrips, { scaleY: 1, transformOrigin: 'top' });
+        gsap.to(entryStrips, {
+          scaleY: 0,
+          transformOrigin: 'top',
+          duration: 0.55,
+          stagger: { each: 0.06, from: 'center' },
+          ease: 'power3.inOut',
+          onComplete: initPageEntranceAnimations
+        });
+      } else {
+        initPageEntranceAnimations();
+      }
     }
   });
 }
