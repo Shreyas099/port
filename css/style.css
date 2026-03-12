@@ -1031,8 +1031,8 @@ p {
   opacity: 0;
 }
 
-.split-reveal-left.active  { animation: splitRevealLeft  1.2s power3.out forwards; }
-.split-reveal-right.active { animation: splitRevealRight 1.2s power3.out forwards; }
+.split-reveal-left.active  { animation: splitRevealLeft  1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards; }
+.split-reveal-right.active { animation: splitRevealRight 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards; }
 
 @keyframes splitRevealLeft {
   from { opacity: 0; transform: translateX(-80px); }
@@ -1053,7 +1053,7 @@ p {
 }
 
 .scale-reveal.active {
-  animation: scaleReveal 1.2s ease forwards;
+  animation: scaleReveal 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
 @keyframes scaleReveal {

@@ -400,7 +400,9 @@ function initPageTransitions() {
    AMBIENT PARTICLES — subtle floating canvas particles
    ============================================================ */
 function initAmbientParticles() {
-  if (prefersReducedMotion || 'ontouchstart' in window) return;
+  if (prefersReducedMotion) return;
+  // Skip on primary pointer: coarse (phones/tablets without mouse) to save resources
+  if (window.matchMedia('(pointer: coarse)').matches) return;
 
   const canvas = document.createElement('canvas');
   canvas.className = 'ambient-particles';
@@ -477,6 +479,9 @@ function initTextScramble() {
         let iteration = 0;
         const maxIterations = originalText.length * 3;
 
+        // Temporarily hide from screen readers during scramble animation
+        el.setAttribute('aria-hidden', 'true');
+
         const interval = setInterval(() => {
           el.textContent = originalText
             .split('')
@@ -490,6 +495,7 @@ function initTextScramble() {
           iteration++;
           if (iteration >= maxIterations) {
             el.textContent = originalText;
+            el.removeAttribute('aria-hidden');
             clearInterval(interval);
           }
         }, 30);
