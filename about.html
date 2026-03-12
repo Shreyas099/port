@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Shreyas - Full Stack Developer. Learn about my background, experience, and journey.">
+  <meta name="theme-color" content="#050505">
+  <title>About | Shreyas Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/about.css">
+</head>
+<body>
+
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Shreyas - Home">
+        <span class="logo-bracket">&lt;</span>Shreyas<span class="logo-bracket">/&gt;</span>
+      </a>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="index.html"    class="nav-link">Home</a>
+        <a href="about.html"   class="nav-link active">About</a>
+        <a href="skills.html"  class="nav-link">Skills</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn--outline nav-cta">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+      <nav class="mobile-nav-links">
+        <a href="index.html"    class="mobile-nav-link">Home</a>
+        <a href="about.html"   class="mobile-nav-link active">About</a>
+        <a href="skills.html"  class="mobile-nav-link">Skills</a>
+        <a href="projects.html" class="mobile-nav-link">Projects</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="About page header">
+      <div class="container page-hero-content">
+        <span class="section-label">Get to know me</span>
+        <h1 class="section-title">About <span class="text-gradient">Me</span></h1>
+        <p class="section-desc" style="margin: 0 auto;">
+          A passionate developer who loves turning complex problems into elegant digital solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         PROFILE INTRO SECTION
+         ==================================================== -->
+    <section class="section" aria-label="Introduction">
+      <div class="container">
+        <div class="about-intro">
+
+          <!-- Profile Frame -->
+          <div class="reveal">
+            <div class="profile-frame" aria-label="Profile photo frame">
+              <div class="profile-img-wrap">
+                <!-- Placeholder avatar SVG (replace src with real image) -->
+                <svg class="profile-placeholder" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Profile avatar">
+                  <circle cx="100" cy="80" r="45" fill="currentColor" opacity="0.15"/>
+                  <ellipse cx="100" cy="160" rx="65" ry="40" fill="currentColor" opacity="0.1"/>
+                  <circle cx="100" cy="80" r="35" fill="currentColor" opacity="0.2"/>
+                  <text x="100" y="88" text-anchor="middle" font-size="40" fill="currentColor" opacity="0.5">S</text>
+                </svg>
+              </div>
+              <div class="profile-badge">
+                <span class="profile-badge-dot"></span>
+                Available for Work
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio Text -->
+          <div class="about-bio reveal reveal-delay-1">
+            <span class="section-label">// about.me</span>
+            <h2>Crafting digital experiences with <span class="text-gradient">passion & precision</span></h2>
+            <div class="divider"></div>
+            <p>
+              Hey! I'm Shreyas, a Full Stack Developer based in India with a deep love for building things on the web.
+              I specialize in creating seamless, performant applications from pixel-perfect frontends to scalable backends.
+            </p>
+            <p>
+              My journey into code started with curiosity — a single "Hello, World!" that spiraled into a full-blown obsession.
+              Today I work across the entire stack, leveraging modern tools to bring ideas to life.
+            </p>
+            <p>
+              When I'm not coding, I'm exploring open-source projects, experimenting with new technologies, or sharing what I've learned with the community.
+            </p>
+
+            <div class="about-meta">
+              <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-value">India 🇮🇳</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Experience</span>
+                <span class="meta-value">3+ Years</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Availability</span>
+                <span class="meta-value" style="color: var(--accent-tertiary);">Open to Work</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Focus</span>
+                <span class="meta-value">Full Stack Dev</span>
+              </div>
+            </div>
+
+            <div class="about-actions">
+              <a href="contact.html" class="btn btn--primary">Get In Touch</a>
+              <a href="#resume" class="btn btn--ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TIMELINE SECTION
+         ==================================================== -->
+    <section class="timeline-section section" aria-label="Experience and education timeline" id="timeline">
+      <div class="container">
+        <div style="text-align:center; margin-bottom: var(--space-3xl);">
+          <span class="section-label">// my journey</span>
+          <h2 class="section-title reveal">Experience &amp; <span class="text-gradient">Education</span></h2>
+          <div class="divider divider--center"></div>
+        </div>
+
+        <div class="timeline" role="list">
+
+          <!-- Item 1 (left) -->
+          <div class="timeline-item left reveal" role="listitem">
+            <div class="timeline-card">
+              <span class="timeline-date">2023 – Present</span>
+              <h4>Full Stack Developer</h4>
+              <p class="timeline-org">Freelance / Open Source</p>
+              <p class="timeline-desc">Building full-stack web applications for clients and contributing to open-source projects. Focused on React, Node.js, and cloud infrastructure.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-empty"></div>
+          </div>
+
+          <!-- Item 2 (right) -->
+          <div class="timeline-item right reveal" role="listitem">
+            <div class="timeline-empty"></div>
+            <div class="timeline-dot purple" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <span class="timeline-date">2022 – 2023</span>
+              <h4>Junior Web Developer</h4>
+              <p class="timeline-org">Tech Startup (Remote)</p>
+              <p class="timeline-desc">Developed and maintained React-based dashboards and REST APIs. Collaborated in an agile team using Git, Jira, and daily standups.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 (left) -->
+          <div class="timeline-item left reveal" role="listitem">
+            <div class="timeline-card">
+              <span class="timeline-date">2021 – 2022</span>
+              <h4>Web Development Intern</h4>
+              <p class="timeline-org">Digital Agency</p>
+              <p class="timeline-desc">Worked on client websites using HTML, CSS, JavaScript, and WordPress. Gained hands-on experience in responsive design and performance optimization.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-empty"></div>
+          </div>
+
+          <!-- Item 4 (right) — Education -->
+          <div class="timeline-item right reveal" role="listitem">
+            <div class="timeline-empty"></div>
+            <div class="timeline-dot purple" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <span class="timeline-date">2019 – 2023</span>
+              <h4>B.Tech in Computer Science</h4>
+              <p class="timeline-org">University — India</p>
+              <p class="timeline-desc">Graduated with distinction. Coursework included Data Structures, Algorithms, DBMS, Operating Systems, and Software Engineering principles.</p>
+            </div>
+          </div>
+
+          <!-- Item 5 (left) — Education -->
+          <div class="timeline-item left reveal" role="listitem">
+            <div class="timeline-card">
+              <span class="timeline-date">2021</span>
+              <h4>Full Stack Web Dev Bootcamp</h4>
+              <p class="timeline-org">Online Certification</p>
+              <p class="timeline-desc">Completed an intensive 6-month bootcamp covering the MERN stack, REST APIs, authentication, deployment, and agile development practices.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-empty"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         FUN FACTS FLIP CARDS
+         ==================================================== -->
+    <section class="section" aria-label="Fun facts">
+      <div class="container">
+        <div style="text-align:center; margin-bottom: var(--space-2xl);">
+          <span class="section-label">// fun_facts.json</span>
+          <h2 class="section-title reveal">A Few Things <span class="text-gradient">About Me</span></h2>
+          <p class="section-desc" style="margin: 0 auto var(--space-2xl);">Hover or tap a card to reveal a fun fact!</p>
+        </div>
+
+        <div class="flip-cards-grid">
+
+          <div class="flip-card reveal" role="button" tabindex="0" aria-label="Fun fact 1 - flip to reveal">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="flip-card-emoji">☕</span>
+                <h4>Coffee Driven</h4>
+              </div>
+              <div class="flip-card-back">
+                <p>I write my best code after the third cup of coffee. Dark roast, no sugar — just like my terminal theme.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card reveal reveal-delay-1" role="button" tabindex="0" aria-label="Fun fact 2 - flip to reveal">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="flip-card-emoji">🌙</span>
+                <h4>Night Owl</h4>
+              </div>
+              <div class="flip-card-back">
+                <p>My most productive coding sessions happen between midnight and 3 AM. The bugs sleep too — mostly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card reveal reveal-delay-2" role="button" tabindex="0" aria-label="Fun fact 3 - flip to reveal">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="flip-card-emoji">🎮</span>
+                <h4>Gamer at Heart</h4>
+              </div>
+              <div class="flip-card-back">
+                <p>Strategy games taught me to think ahead and plan architecture. Every codebase is a level to beat.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card reveal reveal-delay-3" role="button" tabindex="0" aria-label="Fun fact 4 - flip to reveal">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="flip-card-emoji">📚</span>
+                <h4>Lifelong Learner</h4>
+              </div>
+              <div class="flip-card-back">
+                <p>I read at least one tech article daily and have a Notion database with 200+ bookmarked resources. Always curious.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         RESUME CTA
+         ==================================================== -->
+    <section class="section section--sm" id="resume" aria-label="Resume download">
+      <div class="container">
+        <div class="resume-cta reveal">
+          <span class="section-label">// resume.pdf</span>
+          <h3>Want the full picture?</h3>
+          <p>Download my resume to see a complete overview of my skills, experience, and education.</p>
+          <div style="display:flex; gap: var(--space-md); justify-content:center; flex-wrap:wrap;">
+            <a href="#" class="btn btn--primary" download aria-label="Download resume PDF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
+            <a href="contact.html" class="btn btn--ghost">Let's Talk →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <a href="index.html" class="footer-logo"><span>&lt;</span>Shreyas<span>/&gt;</span></a>
+        <div class="footer-social">
+          <a href="https://github.com/Shreyas099" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links" role="navigation" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year"></span> Shreyas. All rights reserved.</p>
+        <a href="#top" class="back-to-top" aria-label="Back to top">↑ Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/pages/about.js"></script>
+</body>
+</html>
