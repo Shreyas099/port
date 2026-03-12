@@ -9,13 +9,21 @@
   const items = document.querySelectorAll('.timeline-item');
   if (!items.length) return;
 
+  // Track a stagger counter across all observed entries
+  let staggerIndex = 0;
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        // Use a data attribute to ensure each item only staggered once
+        const item = entry.target;
+        const delay = staggerIndex * 100;
+        staggerIndex++;
+
         setTimeout(() => {
-          entry.target.classList.add('active');
-        }, i * 100);
-        observer.unobserve(entry.target);
+          item.classList.add('active');
+        }, delay);
+        observer.unobserve(item);
       }
     });
   }, { threshold: 0.15 });
@@ -27,7 +35,6 @@
     observer.observe(item);
   });
 
-  // Listen for active class to animate in
   const mutObs = new MutationObserver((mutations) => {
     mutations.forEach(m => {
       if (m.target.classList.contains('active')) {

@@ -13,7 +13,11 @@
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const ring    = entry.target;
-      const target  = parseInt(ring.dataset.progress || '80', 10);
+      const rawProgress = ring.dataset.progress;
+      if (!rawProgress) {
+        console.warn('progress-ring-wrap is missing data-progress attribute', ring);
+      }
+      const target  = parseInt(rawProgress || '0', 10);
       const pctEl   = ring.querySelector('.progress-ring-pct');
       let current   = 0;
       const duration = 1200;

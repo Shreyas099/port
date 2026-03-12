@@ -10,13 +10,21 @@
     const group = field.closest('.form-group');
     if (!group) return;
 
-    function update() {
-      group.classList.toggle('focused', field === document.activeElement || field.value.trim() !== '');
+    function hasValue() {
+      // Check length before trim to avoid trimming large strings unnecessarily
+      return field.value.length > 0 && field.value.trim() !== '';
     }
 
-    field.addEventListener('focus',  update);
-    field.addEventListener('blur',   update);
-    field.addEventListener('input',  update);
+    function update() {
+      group.classList.toggle('focused', field === document.activeElement || hasValue());
+    }
+
+    field.addEventListener('focus', update);
+    field.addEventListener('blur',  update);
+    // On input, a quick length check avoids trimming on every keystroke
+    field.addEventListener('input', () => {
+      group.classList.toggle('focused', field === document.activeElement || field.value.length > 0);
+    });
     update();
   });
 })();
